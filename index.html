@@ -11,17 +11,17 @@
             src: url('fonts/terminal-grotesque.ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
+            font-display: swap; /* Ensures text is visible while font loads */
         }
 
         :root {
-            /* Dark Mode Palette */
-            --primary-bg: #121212;      /* Very dark grey */
-            --sidebar-bg: #1a1a1a;      /* Slightly lighter sidebar */
-            --card-bg: #1e1e1e;         /* Surface color for cards */
-            --text-main: #e0e0e0;       /* Off-white text */
-            --text-dim: #a0a0a0;        /* Muted text */
-            --accent: #4d89ff;          /* Vibrant blue accent */
-            --border: #333333;          /* Subtle border color */
+            --primary-bg: #1a1a1a;      /* Deep charcoal */
+            --sidebar-bg: #111111;      /* Near black sidebar */
+            --card-bg: #242424;         /* Lighter grey for cards */
+            --text-main: #ffffff;       /* Pure white for clarity */
+            --text-dim: #b0b0b0;        /* Silver for subtext */
+            --accent: #4d89ff;          /* Electric blue */
+            --border: #333333;          /* Dark grey borders */
         }
 
         body {
@@ -31,20 +31,18 @@
             margin: 0;
             padding: 0;
             text-transform: uppercase;
-            line-height: 1.4;
+            line-height: 1.5;
         }
 
-        /* Layout Grid */
         .wrapper {
             display: grid;
             grid-template-columns: 300px 1fr;
             min-height: 100vh;
         }
 
-        /* Sidebar Styling */
         aside {
             background-color: var(--sidebar-bg);
-            border-right: 1px solid var(--border);
+            border-right: 2px solid var(--border);
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
@@ -54,10 +52,9 @@
         .profile-pic-container {
             width: 100%;
             aspect-ratio: 1 / 1;
-            border: 1px solid var(--accent);
-            overflow: hidden;
+            border: 2px solid var(--accent);
             background: #000;
-            margin-bottom: 10px;
+            overflow: hidden;
         }
 
         .profile-pic-container img {
@@ -65,85 +62,42 @@
             height: 100%;
             object-fit: cover;
             display: block;
-            opacity: 0.9; /* Slight dimming to blend with dark mode */
         }
 
-        .sidebar-section h3 {
-            font-size: 1rem;
-            color: var(--accent);
-            border-bottom: 1px solid var(--accent);
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            letter-spacing: 1px;
-        }
-
-        /* Main Content Styling */
         main {
             padding: 60px;
-            max-width: 900px;
-        }
-
-        .hero {
-            margin-bottom: 60px;
+            background-color: var(--primary-bg);
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4rem;
             margin: 0;
-            line-height: 0.8;
-            letter-spacing: -2px;
             color: #ffffff;
+            line-height: 1;
         }
 
         .daad-badge {
             display: inline-block;
             background: var(--accent);
-            color: #000000;
-            padding: 5px 15px;
-            margin-top: 20px;
+            color: #000;
+            padding: 6px 12px;
+            margin: 20px 0;
             font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        section {
-            margin-bottom: 50px;
         }
 
         h2 {
-            font-size: 1.8rem;
-            border-left: 8px solid var(--accent);
-            padding-left: 15px;
-            margin-bottom: 25px;
-            color: #ffffff;
-        }
-
-        /* Project Cards */
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border);
-            padding: 25px;
-            margin-bottom: 20px;
-            transition: all 0.2s ease;
-        }
-
-        .card:hover {
-            border-color: var(--accent);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-        }
-
-        .card h3 {
-            margin-top: 0;
+            font-size: 1.5rem;
             color: var(--accent);
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 10px;
+            margin-top: 40px;
         }
 
-        .tag {
-            font-size: 0.75rem;
-            background: #2a2a2a;
-            color: var(--text-dim);
-            padding: 3px 10px;
-            margin-right: 8px;
+        .card {
+            background: var(--card-bg);
             border: 1px solid var(--border);
+            padding: 20px;
+            margin: 15px 0;
         }
 
         .grid-2 {
@@ -152,30 +106,16 @@
             gap: 20px;
         }
 
-        /* Lists */
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; position: relative; padding-left: 20px; color: var(--text-dim); }
-        li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+        li { margin-bottom: 8px; padding-left: 20px; position: relative; color: var(--text-dim); }
+        li::before { content: ">"; position: absolute; left: 0; color: var(--accent); }
 
-        a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
-        a:hover { opacity: 0.8; text-decoration: underline; }
-
-        footer {
-            margin-top: 100px;
-            border-top: 1px solid var(--border);
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            letter-spacing: 2px;
-        }
+        a { color: var(--accent); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
 
         @media (max-width: 900px) {
             .wrapper { grid-template-columns: 1fr; }
-            aside { border-right: none; border-bottom: 1px solid var(--border); padding: 30px; }
-            main { padding: 30px; }
-            .hero h1 { font-size: 3rem; }
-            .grid-2 { grid-template-columns: 1fr; }
-            .profile-pic-container { max-width: 200px; }
+            aside { border-right: none; border-bottom: 2px solid var(--border); }
         }
     </style>
 </head>
@@ -183,45 +123,75 @@
 
 <div class="wrapper">
     <aside>
-        <div class="profile-box">
-            <div class="profile-pic-container">
-                <img src="images/aritro.jpeg" alt="Aritro Chattopadhyay">
-            </div>
+        <div class="profile-pic-container">
+            <img src="images/aritro.jpeg" alt="Aritro">
         </div>
 
         <div class="sidebar-section">
-            <h3>CONTACT</h3>
-            <p style="text-transform: none; font-size: 0.85rem;">
+            <h3 style="color: var(--accent);">CONTACT</h3>
+            <p style="text-transform: none; font-size: 0.9rem;">
                 <i class="fa-solid fa-envelope"></i> <a href="mailto:aritro.chattopadhyay@uni-bayreuth.de">EMAIL</a><br>
-                <i class="fa-brands fa-github"></i> <a href="https://github.com/aritro-c">GITHUB</a><br>
-                <i class="fa-solid fa-location-dot"></i> BAYREUTH, DE
+                <i class="fa-brands fa-github"></i> <a href="https://github.com/aritro-c">GITHUB</a>
             </p>
         </div>
 
         <div class="sidebar-section">
-            <h3>TECH_STACK</h3>
-            <ul style="font-size: 0.85rem;">
+            <h3 style="color: var(--accent);">TECH_STACK</h3>
+            <ul style="font-size: 0.8rem;">
                 <li>STAGYY (3D/2D)</li>
                 <li>ASPECT / MELTS</li>
                 <li>PYTHON / MATLAB</li>
-                <li>LINUX / SHELL</li>
             </ul>
-        </div>
-
-        <div class="sidebar-section">
-            <h3>EXPERTISE</h3>
-            <p style="font-size: 0.8rem; color: var(--text-dim);">
-                NUMERICAL MODELLING<br>
-                PLANETARY SCIENCE<br>
-                IGNEOUS PETROGENESIS<br>
-                MANTLE DYNAMICS
-            </p>
         </div>
     </aside>
 
     <main>
         <div class="hero">
             <h1>ARITRO<br>CHATTOPADHYAY</h1>
-            <div class="daad-badge">DAAD SCHOLAR // DOCTORAL STUDENT</div>
-            <p style="margin-top: 20px; text-transform: none; max-width: 600px; color: var(--text-dim);">
-                Investigating the divergent evolution of Earth and Venus through advanced 3D
+            <div class="daad-badge">DAAD SCHOLAR // BGI BAYREUTH</div>
+            <p style="text-transform: none; color: var(--text-dim); max-width: 600px;">
+                Investigating Venusian mantle evolution and late accretion sequences using 3D numerical models at the <strong>Bayerisches Geoinstitut</strong>.
+            </p>
+        </div>
+
+        <section>
+            <h2>01_RESEARCH</h2>
+            <div class="card">
+                <h3 style="color: #fff; margin-top: 0;">VENUSIAN EVOLUTION</h3>
+                <p style="text-transform: none; color: var(--text-dim);">
+                    Implementing 3D numerical models to simulate atmosphere/mantle coupling and noble gas isotopic tracing (Ar-series).
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2>02_EDUCATION</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3 style="color: #fff; margin-top: 0;">M.SC. GEOLOGY</h3>
+                    <p>University of Calcutta<br>Rank: 02 (Cohort)</p>
+                </div>
+                <div class="card">
+                    <h3 style="color: #fff; margin-top: 0;">B.SC. GEOLOGY</h3>
+                    <p>University of Calcutta<br>First-Class Honours</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>03_FIELD_LOGS</h2>
+            <ul>
+                <li>SAKURA SCIENCE PROGRAM: JAPAN (2024)</li>
+                <li>CMPDIL TRAINING: BILASPUR (2023)</li>
+                <li>DHARWAR CRATON: KARNATAKA (2022)</li>
+            </ul>
+        </section>
+
+        <footer style="margin-top: 60px; color: #444; font-size: 0.7rem;">
+            SYSTEM STATUS: ONLINE // © 2026
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>
