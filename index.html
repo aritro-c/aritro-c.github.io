@@ -14,18 +14,19 @@
         }
 
         :root {
-            --primary: #000000;
-            --accent: #0055ff;
-            --bg: #ffffff;
-            --sidebar-bg: #f8f9fa;
-            --border: #e0e0e0;
-            --text-main: #1a1a1a;
-            --text-dim: #666666;
+            /* Dark Mode Palette */
+            --primary-bg: #121212;      /* Very dark grey */
+            --sidebar-bg: #1a1a1a;      /* Slightly lighter sidebar */
+            --card-bg: #1e1e1e;         /* Surface color for cards */
+            --text-main: #e0e0e0;       /* Off-white text */
+            --text-dim: #a0a0a0;        /* Muted text */
+            --accent: #4d89ff;          /* Vibrant blue accent */
+            --border: #333333;          /* Subtle border color */
         }
 
         body {
             font-family: 'Terminal Grotesque', 'Courier New', monospace;
-            background-color: var(--bg);
+            background-color: var(--primary-bg);
             color: var(--text-main);
             margin: 0;
             padding: 0;
@@ -43,7 +44,7 @@
         /* Sidebar Styling */
         aside {
             background-color: var(--sidebar-bg);
-            border-right: 2px solid var(--primary);
+            border-right: 1px solid var(--border);
             padding: 40px 30px;
             display: flex;
             flex-direction: column;
@@ -53,9 +54,9 @@
         .profile-pic-container {
             width: 100%;
             aspect-ratio: 1 / 1;
-            border: 2px solid var(--primary);
+            border: 1px solid var(--accent);
             overflow: hidden;
-            background: var(--primary);
+            background: #000;
             margin-bottom: 10px;
         }
 
@@ -63,15 +64,17 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            /* Static photo styling: No filters or transitions */
             display: block;
+            opacity: 0.9; /* Slight dimming to blend with dark mode */
         }
 
         .sidebar-section h3 {
             font-size: 1rem;
-            border-bottom: 2px solid var(--primary);
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
             margin-bottom: 15px;
             padding-bottom: 5px;
+            letter-spacing: 1px;
         }
 
         /* Main Content Styling */
@@ -89,15 +92,17 @@
             margin: 0;
             line-height: 0.8;
             letter-spacing: -2px;
+            color: #ffffff;
         }
 
         .daad-badge {
             display: inline-block;
-            background: var(--primary);
-            color: var(--bg);
+            background: var(--accent);
+            color: #000000;
             padding: 5px 15px;
             margin-top: 20px;
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
         section {
@@ -109,26 +114,36 @@
             border-left: 8px solid var(--accent);
             padding-left: 15px;
             margin-bottom: 25px;
+            color: #ffffff;
         }
 
         /* Project Cards */
         .card {
-            border: 2px solid var(--primary);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
             padding: 25px;
             margin-bottom: 20px;
-            transition: transform 0.2s ease;
+            transition: all 0.2s ease;
         }
 
         .card:hover {
-            transform: translate(-4px, -4px);
-            box-shadow: 6px 6px 0px var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--accent);
         }
 
         .tag {
-            font-size: 0.8rem;
-            background: #eee;
-            padding: 2px 8px;
-            margin-right: 5px;
+            font-size: 0.75rem;
+            background: #2a2a2a;
+            color: var(--text-dim);
+            padding: 3px 10px;
+            margin-right: 8px;
+            border: 1px solid var(--border);
         }
 
         .grid-2 {
@@ -139,24 +154,24 @@
 
         /* Lists */
         ul { list-style: none; padding: 0; }
-        li { margin-bottom: 10px; position: relative; padding-left: 20px; }
+        li { margin-bottom: 10px; position: relative; padding-left: 20px; color: var(--text-dim); }
         li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-        .publication {
-            text-transform: none;
-            font-size: 0.95rem;
-            padding: 15px;
-            background: var(--sidebar-bg);
-            border-left: 4px solid var(--primary);
-            margin-bottom: 15px;
-        }
+        a { color: var(--accent); text-decoration: none; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; text-decoration: underline; }
 
-        a { color: var(--accent); text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        footer {
+            margin-top: 100px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+        }
 
         @media (max-width: 900px) {
             .wrapper { grid-template-columns: 1fr; }
-            aside { border-right: none; border-bottom: 2px solid var(--primary); padding: 30px; }
+            aside { border-right: none; border-bottom: 1px solid var(--border); padding: 30px; }
             main { padding: 30px; }
             .hero h1 { font-size: 3rem; }
             .grid-2 { grid-template-columns: 1fr; }
@@ -195,7 +210,7 @@
 
         <div class="sidebar-section">
             <h3>EXPERTISE</h3>
-            <p style="font-size: 0.8rem;">
+            <p style="font-size: 0.8rem; color: var(--text-dim);">
                 NUMERICAL MODELLING<br>
                 PLANETARY SCIENCE<br>
                 IGNEOUS PETROGENESIS<br>
@@ -208,55 +223,5 @@
         <div class="hero">
             <h1>ARITRO<br>CHATTOPADHYAY</h1>
             <div class="daad-badge">DAAD SCHOLAR // DOCTORAL STUDENT</div>
-            <p style="margin-top: 20px; text-transform: none; max-width: 600px;">
-                Investigating the divergent evolution of Earth and Venus through advanced 3D thermochemical modeling at the <strong>Bayerisches Geoinstitut (BGI)</strong>.
-            </p>
-        </div>
-
-        <section id="research">
-            <h2>CURRENT RESEARCH</h2>
-            <div class="card">
-                <h3>Venusian Evolution & Late Accretion</h3>
-                <p style="text-transform: none;">
-                    Using <strong>StagYY</strong> to simulate coupled atmosphere-mantle dynamics. Key focus: tracking noble gas isotopes (<sup>36</sup>Ar, <sup>38</sup>Ar, <sup>40</sup>Ar) to constrain volatile delivery from late-stage impacts.
-                </p>
-                <div>
-                    <span class="tag">PLANETARY DYNAMICS</span>
-                    <span class="tag">GEOCHEMISTRY</span>
-                    <span class="tag">3D NUMERICS</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="education">
-            <h2>ACADEMIC HISTORY</h2>
-            <div class="grid-2">
-                <div class="card">
-                    <h3>M.SC. GEOLOGY</h3>
-                    <p>University of Calcutta<br>Rank: 02 (Cohort)<br>CGPA: 7.457/10</p>
-                </div>
-                <div class="card">
-                    <h3>B.SC. GEOLOGY</h3>
-                    <p>University of Calcutta<br>First-Class Honours<br>CGPA: 8.575/10</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="fieldwork">
-            <h2>FIELD LOGS</h2>
-            <ul>
-                <li><strong>SAKURA SCIENCE PROGRAM:</strong> KYUSHU, JAPAN (2024).</li>
-                <li><strong>CMPDIL TRAINING:</strong> COAL EXPLORATION, BILASPUR (2023).</li>
-                <li><strong>DHARWAR CRATON:</strong> ARCHEAN TERRAINS, KARNATAKA (2022).</li>
-            </ul>
-        </section>
-
-
-        <footer style="margin-top: 100px; border-top: 2px solid #eee; padding-top: 20px; font-size: 0.8rem; color: #999;">
-            STATUS: ACTIVE // COMPILED 2026 // ARITRO_CHATTOPADHYAY.SYS
-        </footer>
-    </main>
-</div>
-
-</body>
-</html>
+            <p style="margin-top: 20px; text-transform: none; max-width: 600px; color: var(--text-dim);">
+                Investigating the divergent evolution of Earth and Venus through advanced 3D
