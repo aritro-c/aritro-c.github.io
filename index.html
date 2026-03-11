@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aritro Chattopadhyay | BGI Bayreuth</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* FONT PATH UPDATED FOR YOUR REPO STRUCTURE */
         @font-face {
             font-family: 'Terminal Grotesque';
             src: url('fonts/terminal-grotesque.ttf') format('truetype');
@@ -14,108 +14,257 @@
         }
 
         :root {
+            --primary: #000000;
+            --accent: #0055ff;
             --bg: #ffffff;
-            --text: #000000;
-            --accent: #0044ff;
-            --gray: #f2f2f2;
-            --main-font: 'Terminal Grotesque', 'Courier New', monospace;
+            --sidebar-bg: #f8f9fa;
+            --border: #e0e0e0;
+            --text-main: #1a1a1a;
+            --text-dim: #666666;
         }
 
         body {
-            font-family: var(--main-font);
+            font-family: 'Terminal Grotesque', 'Courier New', monospace;
             background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.3;
+            color: var(--text-main);
             margin: 0;
-            padding: 40px 20px;
+            padding: 0;
             text-transform: uppercase;
+            line-height: 1.4;
         }
 
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            border: 3px solid var(--text);
-            padding: 40px;
-            position: relative;
+        /* Layout Grid */
+        .wrapper {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            min-height: 100vh;
         }
 
-        /* Scanline effect for that retro-terminal feel */
-        .container::before {
-            content: " ";
-            display: block;
-            position: absolute;
-            top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), 
-                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
-            z-index: 10;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
+        /* Sidebar Styling */
+        aside {
+            background-color: var(--sidebar-bg);
+            border-right: 2px solid var(--primary);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
         }
 
-        header {
-            border-bottom: 3px solid var(--text);
-            padding-bottom: 30px;
-            margin-bottom: 40px;
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            background: var(--primary);
+            border-radius: 4px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            text-align: center;
         }
 
-        h1 { font-size: 4rem; margin: 0; line-height: 0.9; }
-        h2 { font-size: 1.8rem; background: var(--text); color: var(--bg); display: inline-block; padding: 4px 12px; margin: 40px 0 20px 0; }
-        h3 { font-size: 1.2rem; margin-top: 0; color: var(--accent); }
+        .sidebar-section h3 {
+            font-size: 1rem;
+            border-bottom: 2px solid var(--primary);
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+        }
 
-        .meta-info { font-size: 1.1rem; margin-top: 10px; }
-        .status-badge { border: 2px solid var(--text); padding: 5px 15px; display: inline-block; font-weight: bold; margin-top: 15px; }
+        /* Main Content Styling */
+        main {
+            padding: 60px;
+            max-width: 900px;
+        }
 
-        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .box { border: 1px solid var(--text); padding: 20px; background: var(--gray); }
+        .hero {
+            margin-bottom: 60px;
+        }
 
+        .hero h1 {
+            font-size: 4.5rem;
+            margin: 0;
+            line-height: 0.8;
+            letter-spacing: -2px;
+        }
+
+        .daad-badge {
+            display: inline-block;
+            background: var(--primary);
+            color: var(--bg);
+            padding: 5px 15px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            border-left: 8px solid var(--accent);
+            padding-left: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* Project Cards */
+        .card {
+            border: 2px solid var(--primary);
+            padding: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 6px 6px 0px var(--accent);
+        }
+
+        .tag {
+            font-size: 0.8rem;
+            background: #eee;
+            padding: 2px 8px;
+            margin-right: 5px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Lists */
         ul { list-style: none; padding: 0; }
         li { margin-bottom: 10px; position: relative; padding-left: 20px; }
-        li::before { content: "[+]"; position: absolute; left: 0; color: var(--accent); }
+        li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
 
-        .cite-block { text-transform: none; font-size: 0.85rem; border-left: 4px solid var(--text); padding-left: 15px; margin-bottom: 15px; }
-        
-        a { color: var(--accent); text-decoration: none; border-bottom: 2px solid transparent; }
-        a:hover { border-bottom: 2px solid var(--accent); }
+        .publication {
+            text-transform: none; /* Keep citations readable */
+            font-size: 0.95rem;
+            padding: 15px;
+            background: var(--sidebar-bg);
+            border-left: 4px solid var(--primary);
+            margin-bottom: 15px;
+        }
 
-        sup { font-size: 0.6em; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-        footer { margin-top: 60px; text-align: center; border-top: 2px solid var(--text); padding-top: 20px; font-size: 0.9rem; }
-
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-            .container { padding: 20px; }
+        @media (max-width: 900px) {
+            .wrapper { grid-template-columns: 1fr; }
+            aside { border-right: none; border-bottom: 2px solid var(--primary); }
+            main { padding: 30px; }
+            .hero h1 { font-size: 3rem; }
+            .grid-2 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <header>
-        <h1>ARITRO<br>CHATTOPADHYAY</h1>
-        <div class="meta-info">Doctoral Researcher // Bayerisches Geoinstitut (BGI)</div>
-        <div class="status-badge">DAAD SCHOLAR // ID: 2026-BGI</div>
-        <div style="text-transform: none; margin-top: 20px;">
-            <a href="mailto:chattopadhyay.aritro@outlook.com">chattopadhyay.aritro@outlook.com</a> | 
-            <a href="https://github.com/aritro-c">github.com/aritro-c</a>
+<div class="wrapper">
+    <aside>
+        <div class="profile-box">
+            <div class="profile-pic">PHOTO_PLACEHOLDER</div>
+            <p style="text-transform: none; font-size: 0.9rem;">
+                <strong>ARITRO CHATTOPADHYAY</strong><br>
+                Doctoral Researcher @ BGI<br>
+                Bayreuth, Germany
+            </p>
         </div>
-    </header>
 
-    <section>
-        <h2>01_RESEARCH_FOCUS</h2>
-        <div class="box">
-            <h3>Venusian Evolution Dynamics</h3>
-            <p style="text-transform: none;">Implementing advanced 3D numerical models to simulate the coupled atmosphere/mantle evolution of Venus. Utilizing <strong>StagYY</strong> to analyze the impact of Late Accretion (LA) sequences on planetary volatiles.</p>
-            <ul>
-                <li>Isotopic Tracing: <sup>36</sup>Ar, <sup>38</sup>Ar, <sup>40</sup>Ar</li>
-                <li>Impact-Generated Heat & Atmospheric Erosion</li>
-                <li>1-D Atmosphere Coupling with 3D Spherical Shells</li>
+        <div class="sidebar-section">
+            <h3>CONTACT</h3>
+            <p style="text-transform: none; font-size: 0.85rem;">
+                <i class="fa-solid fa-envelope"></i> <a href="mailto:chattopadhyay.aritro@outlook.com">EMAIL</a><br>
+                <i class="fa-brands fa-github"></i> <a href="https://github.com/aritro-c">GITHUB</a><br>
+                <i class="fa-solid fa-location-dot"></i> BAYREUTH, DE
+            </p>
+        </div>
+
+        <div class="sidebar-section">
+            <h3>TECH_STACK</h3>
+            <ul style="font-size: 0.85rem;">
+                <li>STAGYY (3D/2D)</li>
+                <li>ASPECT / MELTS</li>
+                <li>PYTHON / MATLAB</li>
+                <li>LINUX / SHELL</li>
             </ul>
         </div>
-    </section>
 
-    <section>
-        <h2>02_ACADEMIC_LOG</h2>
-        <div class="grid">
-            <div>
-                <strong>
+        <div class="sidebar-section">
+            <h3>EXPERTISE</h3>
+            <p style="font-size: 0.8rem;">
+                NUMERICAL MODELLING<br>
+                PLANETARY SCIENCE<br>
+                IGNEOUS PETROGENESIS<br>
+                MANTLE DYNAMICS
+            </p>
+        </div>
+    </aside>
+
+    <main>
+        <div class="hero">
+            <h1>SYSTEM<br>OVERVIEW</h1>
+            <div class="daad-badge">DAAD SCHOLAR // DOCTORAL STUDENT</div>
+            <p style="margin-top: 20px; text-transform: none; max-width: 600px;">
+                Investigating the divergent evolution of Earth and Venus through advanced 3D thermochemical modeling at the <strong>Bayerisches Geoinstitut (BGI)</strong>.
+            </p>
+        </div>
+
+        <section id="research">
+            <h2>01_CURRENT_RESEARCH</h2>
+            <div class="card">
+                <h3>Venusian Evolution & Late Accretion</h3>
+                <p style="text-transform: none;">
+                    Using <strong>StagYY</strong> to simulate coupled atmosphere-mantle dynamics. Key focus: tracking noble gas isotopes (<sup>36</sup>Ar, <sup>38</sup>Ar, <sup>40</sup>Ar) to constrain volatile delivery from late-stage impacts.
+                </p>
+                <div>
+                    <span class="tag">PLANETARY DYNAMICS</span>
+                    <span class="tag">GEOCHEMISTRY</span>
+                    <span class="tag">3D NUMERICS</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>02_ACADEMIC_HISTORY</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <h3>M.SC. GEOLOGY</h3>
+                    <p>University of Calcutta<br>Rank: 02 (Cohort)<br>CGPA: 7.457/10</p>
+                </div>
+                <div class="card">
+                    <h3>B.SC. GEOLOGY</h3>
+                    <p>University of Calcutta<br>First-Class Honours<br>CGPA: 8.575/10</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="fieldwork">
+            <h2>03_FIELD_LOGS</h2>
+            <ul>
+                <li><strong>SAKURA SCIENCE PROGRAM:</strong> KYUSHU, JAPAN (2024).</li>
+                <li><strong>CMPDIL TRAINING:</strong> COAL EXPLORATION, BILASPUR (2023).</li>
+                <li><strong>DHARWAR CRATON:</strong> ARCHEAN TERRAINS, KARNATAKA (2022).</li>
+            </ul>
+        </section>
+
+        <section id="publications">
+            <h2>04_PUBLICATIONS_IN_PREP</h2>
+            <div class="publication">
+                <strong>Chattopadhyay, A.</strong>, Mishra, P., Ghosh, B., Ghosh, D. — <em>The Effect of Lithosphere "Lid" Thickness on Mantle Melting in the Mid Oceanic Ridges.</em>
+            </div>
+            <div class="publication">
+                Mishra, P., <strong>Chattopadhyay, A.</strong>, Ghosh, B., Ghosh, D. — <em>Tectonic Evolution of Shikoku Basin: A Geochemical Approach.</em>
+            </div>
+        </section>
+
+        <footer style="margin-top: 100px; border-top: 2px solid #eee; padding-top: 20px; font-size: 0.8rem; color: #999;">
+            STATUS: ACTIVE // COMPILED 2026 // ARITRO_CHATTOPADHYAY.SYS
+        </footer>
+    </main>
+</div>
+
+</body>
+</html>
