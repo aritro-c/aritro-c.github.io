@@ -5,103 +5,117 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aritro Chattopadhyay | BGI Bayreuth</title>
     <style>
-        :root {
-            --primary: #2c3e50;
-            --secondary: #34495e;
-            --accent: #3498db;
-            --bg: #f8f9fa;
-            --white: #ffffff;
+        /* FONT PATH UPDATED FOR YOUR REPO STRUCTURE */
+        @font-face {
+            font-family: 'Terminal Grotesque';
+            src: url('fonts/terminal-grotesque.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
         }
-        body { font-family: 'Inter', -apple-system, sans-serif; line-height: 1.6; color: var(--primary); background: var(--bg); margin: 0; }
-        header { background: var(--primary); color: white; padding: 4rem 1rem; text-align: center; }
-        .container { max-width: 950px; margin: -3rem auto 2rem; padding: 0 1rem; }
-        section { background: var(--white); padding: 2.5rem; margin-bottom: 2rem; border-radius: 12px; shadow: 0 4px 6px rgba(0,0,0,0.05); box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1); }
-        h1 { margin: 0; font-size: 2.8rem; letter-spacing: -1px; }
-        h2 { color: var(--primary); border-left: 5px solid var(--accent); padding-left: 1rem; margin-top: 0; }
-        .badge { background: var(--accent); color: white; padding: 0.4rem 1rem; border-radius: 50px; font-weight: 600; display: inline-block; margin: 0.5rem 0; }
-        .nav-links { margin-top: 1.5rem; }
-        .nav-links a { color: rgba(255,255,255,0.8); margin: 0 15px; text-decoration: none; font-weight: 500; transition: 0.3s; }
-        .nav-links a:hover { color: white; }
-        .ref-list { font-size: 0.9rem; color: #555; }
-        .ref-item { margin-bottom: 1rem; padding-left: 2rem; text-indent: -2rem; }
-        sup { font-size: 0.75em; }
-        .project-meta { font-style: italic; color: var(--secondary); margin-bottom: 1rem; }
-        @media (max-width: 600px) { h1 { font-size: 2rem; } }
+
+        :root {
+            --bg: #ffffff;
+            --text: #000000;
+            --accent: #0044ff;
+            --gray: #f2f2f2;
+            --main-font: 'Terminal Grotesque', 'Courier New', monospace;
+        }
+
+        body {
+            font-family: var(--main-font);
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.3;
+            margin: 0;
+            padding: 40px 20px;
+            text-transform: uppercase;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            border: 3px solid var(--text);
+            padding: 40px;
+            position: relative;
+        }
+
+        /* Scanline effect for that retro-terminal feel */
+        .container::before {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.05) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 10;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        header {
+            border-bottom: 3px solid var(--text);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        h1 { font-size: 4rem; margin: 0; line-height: 0.9; }
+        h2 { font-size: 1.8rem; background: var(--text); color: var(--bg); display: inline-block; padding: 4px 12px; margin: 40px 0 20px 0; }
+        h3 { font-size: 1.2rem; margin-top: 0; color: var(--accent); }
+
+        .meta-info { font-size: 1.1rem; margin-top: 10px; }
+        .status-badge { border: 2px solid var(--text); padding: 5px 15px; display: inline-block; font-weight: bold; margin-top: 15px; }
+
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .box { border: 1px solid var(--text); padding: 20px; background: var(--gray); }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 10px; position: relative; padding-left: 20px; }
+        li::before { content: "[+]"; position: absolute; left: 0; color: var(--accent); }
+
+        .cite-block { text-transform: none; font-size: 0.85rem; border-left: 4px solid var(--text); padding-left: 15px; margin-bottom: 15px; }
+        
+        a { color: var(--accent); text-decoration: none; border-bottom: 2px solid transparent; }
+        a:hover { border-bottom: 2px solid var(--accent); }
+
+        sup { font-size: 0.6em; }
+
+        footer { margin-top: 60px; text-align: center; border-top: 2px solid var(--text); padding-top: 20px; font-size: 0.9rem; }
+
+        @media (max-width: 768px) {
+            .grid { grid-template-columns: 1fr; }
+            h1 { font-size: 2.5rem; }
+            .container { padding: 20px; }
+        }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Aritro Chattopadhyay</h1>
-    <p>Doctoral Researcher at Bayerisches Geoinstitut, Universität Bayreuth</p>
-    <div class="badge">DAAD Scholar</div>
-    <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#research">PhD Research</a>
-        <a href="#publications">Publications</a>
-        <a href="#references">References</a>
-    </div>
-</header>
-
 <div class="container">
-    <section id="about">
-        <h2>About Me</h2>
-        <p>
-            I am a computational geoscientist focused on the long-term evolution of terrestrial planets. 
-            Currently, I am a Doctoral Student at the <strong>Bayerisches Geoinstitut (BGI)</strong>, 
-            supported by a DAAD scholarship. My expertise lies in numerical modeling of planetary interiors, 
-            geochemistry, and mantle dynamics.
-        </p>
-    </section>
+    <header>
+        <h1>ARITRO<br>CHATTOPADHYAY</h1>
+        <div class="meta-info">Doctoral Researcher // Bayerisches Geoinstitut (BGI)</div>
+        <div class="status-badge">DAAD SCHOLAR // ID: 2026-BGI</div>
+        <div style="text-transform: none; margin-top: 20px;">
+            <a href="mailto:chattopadhyay.aritro@outlook.com">chattopadhyay.aritro@outlook.com</a> | 
+            <a href="https://github.com/aritro-c">github.com/aritro-c</a>
+        </div>
+    </header>
 
-    <section id="research">
-        <h2>PhD Research: Venus Evolution</h2>
-        <p class="project-meta">Project: Advanced 3D Numerical Model of Coupled Atmosphere/Mantle Evolution of Venus with Late Accretion Impact Sequences</p>
-        <p>
-            Using the <strong>StagYY</strong> thermochemical code, I model the divergent evolution of Venus and Earth. 
-            A primary focus is the influence of Late Accretion (LA)—the delivery of meteoric material after core formation—on 
-            volatile delivery and planetary habitability.
-        </p>
-        <ul>
-            <li><strong>Isotopic Tracers:</strong> Using <sup>36</sup>Ar and <sup>38</sup>Ar to track volatile delivery, and <sup>40</sup>Ar to mark volcanic degassing history.</li>
-            <li><strong>3D Dynamics:</strong> Transitioning from 2D models to advanced 3D spherical shell simulations to better represent impact scenarios.</li>
-            <li><strong>Feedback Loops:</strong> Investigating the coupling between greenhouse gas degassing (N<sub>2</sub>, CO<sub>2</sub>, H<sub>2</sub>O) and mantle convection.</li>
-        </ul>
-    </section>
-
-    <section id="publications">
-        <h2>Manuscripts Under Preparation</h2>
-        <ul>
-            <li><strong>Chattopadhyay, A.</strong>, Mishra, P., Ghosh, B., Ghosh, D. — <em>The Effect of Lithosphere "Lid" Thickness on Mantle Melting in the Mid Oceanic Ridges.</em></li>
-            <li>Mishra, P., <strong>Chattopadhyay, A.</strong>, Ghosh, B., Ghosh, D. — <em>Tectonic Evolution of Shikoku Basin: A Geochemical Approach.</em></li>
-        </ul>
-    </section>
-
-    <section id="education">
-        <h2>Education</h2>
-        <ul>
-            <li><strong>M.Sc. Applied Geology</strong> | University of Calcutta (2024) | <em>Ranked 2nd in Cohort</em></li>
-            <li><strong>B.Sc. Geology</strong> | University of Calcutta (2022) | <em>First-Class Honours</em></li>
-        </ul>
-    </section>
-
-    <section id="references">
-        <h2>Selected Bibliography</h2>
-        <div class="ref-list">
-            <div class="ref-item">1. Gillmann, C. & Tackley, P. (2014). Atmosphere/mantle coupling and feedbacks on Venus. <em>JGR: Planets</em>.</div>
-            <div class="ref-item">2. Way, M. J., et al. (2016). Was Venus the first habitable world of our solar system? <em>GRL</em>.</div>
-            <div class="ref-item">4. Gillmann, C., et al. (2020). Dry late accretion inferred from Venus's coupled atmosphere and internal evolution. <em>Nature Geoscience</em>.</div>
-            <div class="ref-item">6. Tackley, P. J. (2008). Modelling compressible mantle convection... using the yin-yang grid. <em>PEPI</em>.</div>
-            <div class="ref-item">10. Raymond, S. N., et al. (2013). Dynamical and collisional constraints on a stochastic late veneer. <em>Icarus</em>.</div>
-            <div class="ref-item">12. O'Rourke, J. G. & Korenaga, J. (2015). Thermal evolution of Venus with argon degassing. <em>Icarus</em>.</div>
-            <p><em>(See full project proposal for complete list of 24 references.)</em></p>
+    <section>
+        <h2>01_RESEARCH_FOCUS</h2>
+        <div class="box">
+            <h3>Venusian Evolution Dynamics</h3>
+            <p style="text-transform: none;">Implementing advanced 3D numerical models to simulate the coupled atmosphere/mantle evolution of Venus. Utilizing <strong>StagYY</strong> to analyze the impact of Late Accretion (LA) sequences on planetary volatiles.</p>
+            <ul>
+                <li>Isotopic Tracing: <sup>36</sup>Ar, <sup>38</sup>Ar, <sup>40</sup>Ar</li>
+                <li>Impact-Generated Heat & Atmospheric Erosion</li>
+                <li>1-D Atmosphere Coupling with 3D Spherical Shells</li>
+            </ul>
         </div>
     </section>
-</div>
 
-<footer style="text-align: center; padding-bottom: 2rem; color: #777;">
-    <p>Contact: chattopadhyay.aritro@outlook.com</p>
-</footer>
-
-</body>
-</html>
+    <section>
+        <h2>02_ACADEMIC_LOG</h2>
+        <div class="grid">
+            <div>
+                <strong>
